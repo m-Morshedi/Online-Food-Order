@@ -1,22 +1,14 @@
-require('dotenv').config();
+import ExpressApp from './services/ExpressApp';
 import express from 'express';
-import { connectDB } from './config/db';
-import path from 'node:path';
 
-import { AdminRoute, VendorRoute } from './routes';
+const startServer = async () => {
+  const app = express();
 
-const app = express();
-app.use('/images', express.static(path.join(__dirname, 'images')));
+  await ExpressApp(app);
+  app.listen(process.env.PORT, () => {
+    console.clear();
+    console.log(`server is running on port ${process.env.PORT}`);
+  });
+};
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-connectDB();
-
-app.use('/admin', AdminRoute);
-app.use('/vendor', VendorRoute);
-
-app.listen(process.env.PORT, () => {
-  console.clear();
-  console.log(`server is running on port ${process.env.PORT}`);
-});
+startServer();
