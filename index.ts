@@ -7,7 +7,7 @@ const startServer = async () => {
   await ExpressApp(app);
   app.listen(process.env.PORT, () => {
     console.clear();
-    console.log(`server is running on port ${process.env.PORT}`);
+    console.log(`server is up and running`);
   });
 };
 

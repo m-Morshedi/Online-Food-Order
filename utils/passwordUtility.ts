@@ -19,7 +19,7 @@ export const comparePassword = async (
   return await bcrypt.compare(candidatePassword, hashedPassword);
 };
 
-export const createJWT = (payload: VendorPayload) => {
+export const createJWT = (payload: AuthPayload) => {
   const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: '1d' });
   return token;
 };
